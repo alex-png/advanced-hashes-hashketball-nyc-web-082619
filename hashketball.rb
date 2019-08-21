@@ -249,4 +249,35 @@ def player_with_longest_name
   end  
 end   
 
+def long_name_steals_a_ton?
+    home_array = []
+  game_hash
+   player = player_with_longest_name
+   player_point = game_hash[:away][:players][1][player][:points]
+    game_hash[:home][:players].each_index do |indx|
+        if game_hash[:home][:players][indx].include?(player)
+        game_hash[:home][:players].each_index do |indx|
+        game_hash[:home][:players][indx].keys.each do |name|
+           if player_point > game_hash[:home][:players][indx][name][:points]
+             return true
+           else
+             return false
+           end
+        end
+      end
+        else
+          game_hash[:away][:players].each_index do |indx|
+            game_hash[:away][:players][indx].keys.each do |name|
+              if player_point > game_hash[:away][:players][indx][name][:points]
+                return true
+              else
+                return false
+              end
+            end
+          end        
+        end 
+    end
+end
+
+
 
